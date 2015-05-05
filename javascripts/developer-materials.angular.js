@@ -209,14 +209,14 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
   $scope.data = {};
   $scope.filters = {};
   $scope.pagination = {
-    size : 9
+    size : 10
   };
 
   /*
     Handle Pagination
   */
   $scope.paginate = function(page) {
-    $scope.pagination.size = ($scope.pagination.viewall ? 500 : 9);
+    $scope.pagination.size = ($scope.pagination.viewall ? 500 : $scope.pagination.size);
     var startAt = (page * $scope.pagination.size) - $scope.pagination.size;
     var endAt = page * $scope.pagination.size;
     var pages = Math.ceil($scope.data.materials.length / $scope.pagination.size);
