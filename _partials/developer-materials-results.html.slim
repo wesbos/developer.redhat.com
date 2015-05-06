@@ -86,14 +86,14 @@
 .large-24
   .large-7.columns#show-entries
     label.inline Show
-    select(name="show-entries")
-      option(value="1") 10
-      option(value="2") 15
-      option(value="3") 20
-      option(value="4") 25
+    select(name="show-entries" ng-model="pagination.size" ng-change="filter.applyFilters()")
+      option(value="10") 10
+      option(value="15") 15
+      option(value="20") 20
+      option(value="25") 25
     label.inline entries
     br
-    p Showing 1 to 10 of 12 entries
+    p Showing {{paginate.currentPage}} to {{paginate.currentPage + pagination.size}} of {{data.materials.length}} entries
   .large-17.small-24.columns
     nav#paginator(ng-hide="pagination.viewall || !data.materials.length || data.loading")
       ul.pagination

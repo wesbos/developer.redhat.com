@@ -1,12 +1,12 @@
 .large-24.developer-materials-header
   h4 Learn
   / small
-  /   | 320,000 Results  &#124;  
-  /   a(href="#") Show 25  &#124;  
+  /   | 320,000 Results  &#124;
+  /   a(href="#") Show 25  &#124;
   /   a(href="#") View All
 .large-24
   form(method="GET" ng-submit="filter.applyFilters()")
-    .row 
+    .row
       .large-7.columns
         label.right.inline(for="filter-by")
           strong Filter By:
@@ -14,11 +14,23 @@
         input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
 
       .large-4.columns
-        select
-          option(value="default")Format
-          option(ng-repeat="item in data.availableFormats"name="filter-format[]"  value="{{item.value}}" ng-click="filter.toggleSelection(item.value, 'sys_type'); filter.applyFilters()" ng-checked="filters.sys_type.indexOf(item.value) > -1"){{item.name}}
+        label(
+          ng-repeat="item in data.availableFormats"
+        )
+          input(type="checkbox" name="filter-format[]" value="{{item.value}}"
+                ng-click="filter.toggleSelection(item.value, 'sys_type'); filter.applyFilters()"
+                ng-checked="filters.sys_type.indexOf(item.value) > -1"
+          )
+          span(
+            data-tooltip=""
+            aria-haspopup="true"
+            class="has-tip tip-right"
+            title="{{item.description}}"
+            data-options="disable_for_touch:true"
+          )
+            | {{item.name}}
           span.label.count(ng-show="data.groups[item.value]")
-          | {{data.groups[item.value]}}
+
 
       .large-5.columns.left
         label(for="publish-date")
@@ -30,8 +42,8 @@
       / .large-6.columns.dropdown-filter.right
       /   label.right.inline(for="sort-by")
       /     strong Sort By:
-      /   a(href="#" data-dropdown="sort-by" class="tiny button") 
-      /     | Relevancy  
+      /   a(href="#" data-dropdown="sort-by" class="tiny button")
+      /     | Relevancy
       /     i.fa.fa-caret-down
       /   ul(id="sort-by" class="f-dropdown" data-dropdown-content)
       /     li Option 1
