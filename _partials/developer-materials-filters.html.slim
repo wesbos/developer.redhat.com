@@ -1,9 +1,5 @@
 .large-24.developer-materials-header
   h4 Learn
-  / small
-  /   | 320,000 Results  &#124;
-  /   a(href="#") Show 25  &#124;
-  /   a(href="#") View All
 .large-24
   form(method="GET" ng-submit="filter.applyFilters()")
     .row
@@ -14,23 +10,8 @@
         input(type="text" id="filter-by" placeholder="Keyword" name="filter-text" class="keyword" ng-model="filters.query" ng-change="filter.applyFilters()" ng-model-options="{debounce:300}")
 
       .large-4.columns
-        label(
-          ng-repeat="item in data.availableFormats"
-        )
-          input(type="checkbox" name="filter-format[]" value="{{item.value}}"
-                ng-click="filter.toggleSelection(item.value, 'sys_type'); filter.applyFilters()"
-                ng-checked="filters.sys_type.indexOf(item.value) > -1"
-          )
-          span(
-            data-tooltip=""
-            aria-haspopup="true"
-            class="has-tip tip-right"
-            title="{{item.description}}"
-            data-options="disable_for_touch:true"
-          )
-            | {{item.name}}
-          span.label.count(ng-show="data.groups[item.value]")
-
+        select(ng-options="item.value as item.name for item in data.availableFormats" ng-model="filters.sys_type" ng-change="filter.applyFilters()")
+          option(value="") Choose a Topic
 
       .large-5.columns.left
         label(for="publish-date")

@@ -378,6 +378,8 @@ dcp.controller('developerMaterialsController', function($scope, materialService)
     }
 
     if($scope.filters.sys_type && $scope.filters.sys_type.length){
+      // convert single sys_type into an array - allows us to switch to multi-select down the road
+      $scope.filters.sys_type = [$scope.filters.sys_type];
       // remove jbossdeveloper_sandbox "Early Access and convert it to experimental"
 
         var idx = $scope.filters.sys_type.indexOf("jbossdeveloper_sandbox");
